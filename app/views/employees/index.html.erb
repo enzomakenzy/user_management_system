@@ -1,0 +1,52 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Funcionários" %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Funcionários</h1>
+    <%= link_to "Criar novo funcionário", new_employee_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div>
+    <h1>Lista de Funcionários:</h1>
+  </div>
+
+  <%= search_form_for @q do |f| %>
+    <p>Ordenar por: </p>
+    <div>
+      <div>
+        <p> <%= f.label :position_department_id_eq, "Departamento: ",  include_black: true %> </p>
+        <p> <%= f.select :position_department_id_eq, options_from_collection_for_select(@departments, :id, :name), include_blank: "Nenhum" %> </p>
+      </div>
+
+      <p>Ordenar por data de contratamento: </p>
+
+      <div>
+        <p> <%= f.label :contract_date_gteq, "De:" %> </p>
+        <p> <%= f.date_select :contract_date_gteq, start_year: 1900, end_year: Time.current.year %> </p>
+      </div>
+      
+      <div>
+        <p> <%= f.label :contract_date_lteq, "Até: " %> </p>
+        <p> <%= f.date_select :contract_date_lteq, start_year: 1900, end_year: Time.current.year %> </p>
+      </div>
+
+      <p> <%= f.submit %> </p>
+    </div>
+
+  <% end %>
+
+  <div id="employees" class="min-w-full">
+    <% @employees.each do |employee| %>
+      <p>Nome: <%= employee.full_name %> </p>
+      <p>Cargo: <%= employee.position.name %> </p>
+      <p>Departamento: <%= employee.position.department.name %> </p>
+      <p>Data de contratação: <%= employee.contract_date %></p>
+      <p> <%= link_to "Detalhes", employee, class: "rounded-lg bg-gray-100 inline-block font-medium" %> </p>
+      <hr class="bg-black">
+    <% end %>
+  </div>
+</div>
