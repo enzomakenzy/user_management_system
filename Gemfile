@@ -74,3 +74,7 @@ gem "devise", "~> 4.9"
 gem "ransack", "~> 4.2"
 
 gem "pundit", "~> 2.4"
+
+gem "dotenv-rails", "~> 3.1"
+
+gem "faker", "~> 3.5"

@@ -1,12 +1,3 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 departments = [
   {
     name: "Recursos Humanos",
@@ -105,6 +96,101 @@ departments = [
   },
 ]
 
+positions = [
+
+  {
+    name: "Diretor de TI",
+    description: "Descrição do diretor de ti",
+    department_id: 4,
+    level: "Sênior",
+    base_salary: 4000,
+    requirements: "Requerimentos do diretor de ti",
+    benefits: "Benefícios do diretor de ti",
+    status: "Ativo"
+  },
+  
+  {
+    name: "Gerente de Projetos",
+    description: "Descrição do gerente de projetos",
+    department_id: 4,
+    level: "Sênior",
+    base_salary: 6000,
+    requirements: "Requerimentos do gerente de projetos",
+    benefits: "Benefícios do gerente de projetos",
+    status: "Ativo"
+  },
+
+  {
+    name: "Contator",
+    description: "Descrição do contator",
+    department_id: 2,
+    level: "Júnior",
+    base_salary: 3500,
+    requirements: "Requerimentos do contator",
+    benefits: "Benefícios do contator",
+    status: "Ativo"
+  },
+
+  {
+    name: "Engenheiro",
+    description: "Descrição do engenheiro",
+    department_id: 6,
+    level: "Não se aplica",
+    base_salary: 5000,
+    requirements: "Requerimentos do engenheiro",
+    benefits: "Benefícios do engenheiro",
+    status: "Ativo"
+  },
+
+  {
+    name: "Diretor de recursos humanos",
+    description: "Descrição do diretor de recursos humanos",
+    department_id: 1,
+    level: "Não se aplica",
+    base_salary: 4000,
+    requirements: "Requerimentos do diretor de recursos humanos",
+    benefits: "Benefícios do diretor de recursos humanos",
+    status: "Ativo"
+  },
+
+  {
+    name: "Motorista",
+    description: "Descrição do motorista",
+    department_id: 5,
+    level: "Não se aplica",
+    base_salary: 1800,
+    requirements: "Requerimentos do motorista",
+    benefits: "Benefícios do motorista",
+    status: "Ativo"
+  },
+
+  {
+    name: "Administrador",
+    description: "Descrição do administrador",
+    department_id: 3,
+    level: "Não se aplica",
+    base_salary: 3000,
+    requirements: "Requerimentos do administrador",
+    benefits: "Benefícios do administrador",
+    status: "Ativo"
+  },
+
+  {
+    name: "Fiscal municipal",
+    description: "Descrição do fiscal municipal",
+    department_id: 5,
+    level: "Sênior",
+    base_salary: 3500,
+    requirements: "Requerimentos do fiscal municipal",
+    benefits: "Benefícios do fiscal municipal",
+    status: "Ativo"
+  }
+]
+
 departments.each do |depart|
   Department.create(depart)
+end
+
+positions.each do |position|
+  Position.create(position)
 end
