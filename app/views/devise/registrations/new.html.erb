@@ -26,19 +26,27 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
   
-    <div class="my-5">
-      <%= f.label :password, "Senha" %>
-      <% if @minimum_password_length %>
-      <em>(Mínimo de <%= @minimum_password_length %> caracteres)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-    </div>
-  
-    <div class="my-5">
-      <%= f.label :password_confirmation, "Confirme a Senha" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-    </div>
-  
+    <% if User.exists? %>
+      <div class="my-5">
+        <% generated_password = "654321" %>
+        <%= f.hidden_field :password, value: generated_password %>
+        <%= f.hidden_field :password_confirmation, value: generated_password %>
+      </div>
+    <% else %>
+      <div class="my-5">
+        <%= f.label :password, "Senha" %>
+        <% if @minimum_password_length %>
+        <em>(Mínimo de <%= @minimum_password_length %> caracteres)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+    
+      <div class="my-5">
+        <%= f.label :password_confirmation, "Confirme a Senha" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+    <% end %>
+
     <div class="actions">
       <%= f.submit "Cadastre-se", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>

@@ -4,6 +4,8 @@
         <b>
             <%= current_user.email %>
             <%= current_user.acess %>
+            <%= current_user.password %>
+            <%= link_to "Editar usuário", edit_user_registration_path %>
         </b>
         <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete} %>
     <% else %>

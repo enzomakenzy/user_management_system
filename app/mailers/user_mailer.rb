@@ -1,6 +1,7 @@
 class UserMailer < ApplicationMailer
-  def welcome_email
-    @user = params[:user]
-    mail(to: @user.email, subject: "Sua senha temporária")
+
+  def welcome_email(user)
+    @user = user
+    mail(to: @user.email, subject: "Bem vindo!")
   end
 end

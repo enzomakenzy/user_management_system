@@ -1,3 +1,8 @@
-<p>Olá, <%= @user.name %>!</p>
-<p>Sua senha temporária é: <%= @user.password %></p>
-<p><%= link_to "Clique aqui para fazer login", new_user_path %></p>
+<p> Bem-vindo, <%= @user.name %>! </p>
+
+<p>Você foi registrado com sucesso no site de gerenciamento de funcionários! Abaixo está a sua senha temporária:</p>
+<p> <%= @user.password %> </p>
+
+<p>Após realizar seu login, poderá alterar sua senha automaticamente para uma de sua preferência.</p>
+
+<p>Clique <%= link_to "aqui", Rails.application.routes.url_helpers.welcome_path %> para ser direcionado para página de login</p>

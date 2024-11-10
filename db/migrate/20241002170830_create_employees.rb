@@ -8,7 +8,6 @@ class CreateEmployees < ActiveRecord::Migration[7.1]
       t.string :rg
       t.string :phone
       t.string :email
-      t.string :role
       t.date :contract_date
       t.decimal :salary
       t.string :status
