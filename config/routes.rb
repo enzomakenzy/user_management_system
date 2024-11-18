@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'new_user_notice/index'
-  root "welcome#index"
-  get "welcome", to: "welcome#index", as: "welcome"
+  root "home#index"
+  devise_for :users, controllers: { registrations: "users/registrations", passwords: "users/passwords" }
+  get "alert_email_password/index"
+  get "new_user_notice/index"
   get "home", to: "home#index", as: "home"
-  devise_for :users, controllers: { registrations: "users/registrations" }
   resources :positions
   resources :departments
   resources :employees

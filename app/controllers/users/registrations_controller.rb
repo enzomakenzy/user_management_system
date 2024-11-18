@@ -3,7 +3,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :check_password_change, only: [:edit, :update]
 
   # GET /resource/sign_up
   # def new
@@ -11,9 +10,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    if User.count == 0
+      super
+    else 
+      generated_password = Faker::Internet.password(max_length: 8)
+      params[:user][:password] = generated_password
+      params[:user][:password_confirmation] = generated_password
+
+      build_resource(sign_up_params)
+      resource.save
+
+      
+      if resource.persisted? 
+        UserMailer.with(user: resource, password: generated_password).welcome_email.deliver_now 
+        sign_out(resource)
+        redirect_to alert_email_password_index_path, notice: "Uma senha temporária foi enviada para o seu email"
+      else
+        clean_up_passwords resource
+        set_minimum_password_length
+        respond_with resource
+      end
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -21,13 +40,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  def update
-    super do |resource|
-      if resource.saved_changed_to_encrypted_password? || User.id == 1
-        resource.update(password_changed: true)
-      end
-    end
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -43,13 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  protected
-
-  def check_password_change
-    if current_user && !current_user.password_changed? 
-      redirect_to edit_user_registration_path, notice: "Bem vindo! Aqui você poderá alterar sua senha, se desejar"
-    end
-  end
+  # protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -62,10 +71,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-      sign_out resource
-      welcome_path
-  end
+  # def after_sign_up_path_for(resource)
+  #   super(resource)
+  # end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

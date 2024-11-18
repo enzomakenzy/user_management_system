@@ -1,56 +1,61 @@
-<div class="mx-auto">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "contents") do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="my-5">
-      <%= f.label :name , "Nome Completo:"%><br>
-      <%= f.text_field :name, autofocus: "name", autocomplete: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+<div class="bg-blue w-full h-screen flex justify-center items-center">
+  <div class="flex items-stretch bg-lightgray w-fit max-w-6xl rounded-2xl m-6">
+    <div class="flex p-7 bg-white rounded-2xl items-center">
+      <%= image_tag "login_and_cadaster/login_cadaster_2.svg"%>
     </div>
-  
-    <% if User.count > 0 %>
-      <div data-controller="checkboxes">
-        <div class="my-5">
-          <%= f.label :acess, "Nível de Acesso:" %><br>
-          <%= f.select :acess, [["Administrador", "admin"], ["Gestor de RH", "gestor"]], {},
-            data: { action: "change->checkboxes#select" }, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-        </div>
-  
-        <div data-checkboxes-target="show" class="my-5 hidden">
-          <%= f.label :departments, "Departamento:" %><br>
-          <%= f.collection_check_boxes :department_ids, Department.all, :id, :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-        </div>
-      </div>
-    <% end %>
-  
-    <div class="my-5">
-      <%= f.label :email, "Email:" %><br>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-    </div>
-  
-    <% if User.exists? %>
-      <div class="my-5">
-        <% generated_password = "654321" %>
-        <%= f.hidden_field :password, value: generated_password %>
-        <%= f.hidden_field :password_confirmation, value: generated_password %>
-      </div>
-    <% else %>
-      <div class="my-5">
-        <%= f.label :password, "Senha" %>
-        <% if @minimum_password_length %>
-        <em>(Mínimo de <%= @minimum_password_length %> caracteres)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-      </div>
     
-      <div class="my-5">
-        <%= f.label :password_confirmation, "Confirme a Senha" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-      </div>
-    <% end %>
+    <div class="px-7 w-96" data-controller="loading">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "contents", data: {
+        action: "submit->loading#showSpinner"
+      }) do |f| %>
+        <h1 class="font-russoone text-center text-xl mt-5"> Crie sua conta! </h1>
+        <%= render "devise/shared/error_messages", resource: resource, class: "text-center" %>
+        <div class="my-5">
+          <%= f.label :name , "Nome Completo:"%><br>
+          <%= f.text_field :name, autofocus: "name", autocomplete: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+        <div class="my-5">
+          <%= f.label :email, "Email:" %><br>
+          <%= f.email_field :email, autofocus: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+        <% if User.count > 0 %>
+          <div data-controller="checkboxes">
+            <div class="mt-5">
+              <%= f.label :acess, "Nível de Acesso:" %><br>
+              <%= f.select :acess, [["Administrador", "admin"], ["Gestor de RH", "gestor"]], {},
+                data: { action: "change->checkboxes#select" }, class: "block shadow focus:outline-none rounded-md border border-gray-400 px-3 py-2 mt-2 w-full"%>
+            </div>
+            <div data-checkboxes-target="show" class="my-5 hidden">
+              <%= f.label :departments, "Departamento(s):" %><br>
+              <div class="max-h-24 overflow-y-auto rounded-md p-2">
+                <%= f.collection_check_boxes :department_ids, Department.all, :id, :name do |b|%>
+                  <div class="flex items-center space-x-2">
+                    <%= b.check_box %>
+                    <%= b.label %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% if User.count == 0 %>
+          <div class="my-5">
+            <%= f.label :password, "Senha" %>
+            <span class="italic">(Mínimo de 6 caracteres)</span>
+            <%= f.password_field :password, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+          </div>
+          <div class="mt-5">
+            <%= f.label :password_confirmation, "Confirme a Senha" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+          </div>
+        <% end %>
 
-    <div class="actions">
-      <%= f.submit "Cadastre-se", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+        <p class="text-center text-sm my-3">Já possui uma <%= link_to "conta", new_user_session_path, class: "text-blue font-semibold" %>?</p>
+
+        <%= f.submit "Cadastre-se", data: { loading_target: "button" }, class: "cursor-pointer font-russoone text-white block shadow rounded-md border bg-blue border-gray-400 outline-none px-3 py-2 mt-2 w-full mb-4" %>
+
+        
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
-
-<%= render "devise/shared/links" %>

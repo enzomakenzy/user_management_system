@@ -1,8 +1,8 @@
-<p> Bem-vindo, <%= @user.name %>! </p>
+<h1>Bem vindo ao site de gerenciamente de usuários da prefeitura!</h1>
+<p>Seu cadastro foi realizado com sucesso! Por motivos de segurança, aqui está a sua senha temporária: </p>
 
-<p>Você foi registrado com sucesso no site de gerenciamento de funcionários! Abaixo está a sua senha temporária:</p>
-<p> <%= @user.password %> </p>
+<h2> <%= @user.password %> </h2>
 
-<p>Após realizar seu login, poderá alterar sua senha automaticamente para uma de sua preferência.</p>
+<p>Após logado você poderá trocar para uma senha de sua preferência, se assim quiser, diretamente em "Editar usuário".</p>
 
-<p>Clique <%= link_to "aqui", Rails.application.routes.url_helpers.welcome_path %> para ser direcionado para página de login</p>
+<p>Clique <strong><%= link_to "aqui", new_user_session_url %></strong> para ser direcionado para a página de login.</p>

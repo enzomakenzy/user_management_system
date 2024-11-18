@@ -1,5 +1,7 @@
-<% if notice %>
+<% if user_signed_in? %>
+  <% if notice %>
     <p class="notice"><%= notice %></p>
-<% elsif alert %>
+  <% elsif alert %>
     <p class="alert"><%= alert %></p>
+  <% end %>
 <% end %>

@@ -1,0 +1,2 @@
+module AlertEmailPasswordHelper
+end
