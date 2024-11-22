@@ -1,15 +1,9 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="mx-auto md:w-2/3 max-w-2xl my-5">
+  <%= render @employee %>
 
-    <%= render @employee %>
-
-    <%= link_to "Edit this employee", edit_employee_path(@employee), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to employees", employees_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this employee", @employee, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
+  <%= link_to "Editar informações", edit_employee_path(@employee), class: "rounded-lg py-2 px-4 bg-blue text-white inline-block font-medium cursor-pointer" %>
+  <%= link_to "Voltar", employees_path, class: "rounded-lg py-2 px-4 bg-blue text-white inline-block font-medium cursor-pointer" %>
+  <div class="inline-block">
+    <%= button_to "Deletar funcionário", @employee, method: :delete, class: "rounded-lg py-2 px-4 bg-blue text-white inline-block font-medium cursor-pointer" %>
   </div>
 </div>

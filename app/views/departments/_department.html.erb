@@ -1,26 +1,32 @@
-<div id="<%= dom_id department %>">
+<div class="mx-auto" id="<%= dom_id department %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="text-lg block font-medium mb-1">Nome:</strong>
     <%= department.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+    <strong class="text-lg block font-medium mb-1">Descrição:</strong>
     <%= department.description %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Code:</strong>
+    <strong class="text-lg block font-medium mb-1">Código do departamento:</strong>
     <%= department.code %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Adress:</strong>
-    <%= department.adress %>
-  </p>
+  <div class="my-5">
+    <strong class="text-lg block font-medium mb-1">Endereço:</strong>
+    <p>Rua: <%= department.adress["street"] %></p>
+    <p>Número: <%= department.adress["number"]%></p>
+    <p>Complemento: <%= department.adress["complement"]%></p>
+    <p>Bairro: <%= department.adress["neighborhood"]%></p>
+    <p>Cidade: <%= department.adress["city"] %></p>
+    <p>Estado: <%= department.adress["state"] %></p>
+    <p>CEP: <%= department.adress["cep"] %></p>
+  </div>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
+    <strong class="text-lg block font-medium mb-1">Status:</strong>
     <%= department.status %>
   </p>
 

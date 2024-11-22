@@ -1,16 +1,16 @@
 <% if user_signed_in? %>
-  <nav class="container mx-auto flex justify-between max-w-screen-lg font-geinst">
+  <nav class="font-semibold flex justify-around font-geinst text-white">
     <div class="flex items-center p-3">
       <%= link_to home_path, class: "flex items-center" do %>
         <%= image_tag "system-logo.png", class: "w-14" %>
         <span class="font-medium ml-2">Sistema de gerenciamento de Usuários</span>
       <% end %>
     </div>
-    <div class="flex items-center text-sm">
-      <%= current_user.email, class: "" %>
+    <div class="flex items-center gap-6 text-sm">
+      <%= current_user.email %>
       <p>Usuário: <%= current_user.acess %></p>
       <%= current_user.password %>
-      <%= link_to "Conta", edit_user_registration_path %>
+      <%= link_to "Editar senha", edit_user_registration_path %>
       <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete } %>
     </div>
   </nav>

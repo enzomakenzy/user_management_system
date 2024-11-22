@@ -6,7 +6,11 @@
         <div class="px-7 w-96">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <h1 class="font-russoone text-center text-xl mt-5">Entrar</h1>
-            <%= render "devise/shared/error_messages", resource: resource, class: "text-center" %>
+            <% if notice %>
+              <p class="notice text-red-600 font-semibold text-center"><%= notice %></p>
+            <% elsif alert %>
+              <p class="alert text-red-600 font-semibold text-center"><%= alert %></p>
+            <% end %>
             <div class="my-5">
               <%= f.label :email %><br>
               <%= f.email_field :email, autofocus: true, autocomplete: :off, class: "block shadow rounded-md border border-gray-400  focus:outline-none px-3 py-2 mt-2 w-full" %>

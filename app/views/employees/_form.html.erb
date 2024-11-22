@@ -1,8 +1,6 @@
 <%= form_with(model: employee, local: true, class: "contents") do |form| %>
   <% if employee.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
-
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3 text-center">
       <ul>
         <% employee.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -13,114 +11,94 @@
 
   <div class="my-5">
     <%= form.label :full_name, "Nome Completo:" %> <br>
-    <%= form.text_field :full_name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :full_name, autocomplete: :off, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="my-5">
     <%= form.label :birthday, "Data de Nascimento:" %> <br>
     <%= form.date_field :birthday, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="my-5">
     <%= form.label :gender, "Gênero:" %> <br>
-    
+  
     <%= form.radio_button :gender, "Masculino" %>
     <%= form.label :gender_male, "Masculino" %> <br>
-
     <%= form.radio_button :gender, "Feminino" %>
     <%= form.label :gender_female, "Feminino" %> <br>
-
     <%= form.radio_button :gender, "Outro" %>
     <%= form.label :gender_other, "Outro" %>
   </div>
-
   <div class="my-5">
     <%= form.label :cpf, "CPF:" %> <br>
-    <%= form.text_field :cpf, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :cpf, autocomplete: :off, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="my-5">
     <%= form.label :rg, "RG:" %> <br>
-    <%= form.text_field :rg, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :rg, autocomplete: :off, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div>
-    <p>Endereço</p>
+    <p class="font-semibold text-lg">Endereço</p>
     <div class="my-5">
       <%= form.label :adress_street, "Rua:" %> <br>
-      <%= form.text_field :adress, value: employee.adress["street"], name: "employee[adress][street]",class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.text_field :adress, autocomplete: :off, value: employee.adress["street"], name: "employee[adress][street]",class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-
     <div class="my-5">
       <%= form.label :adress_number, "Número:" %> <br>
-      <%= form.text_field :adress, value: employee.adress["number"], name: "employee[adress][number]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.number_field :adress, autocomplete: :off, value: employee.adress["number"], name: "employee[adress][number]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-
     <div class="my-5">
-       <%= form.label :adress_complement, "Complemento:" %> <br>
-       <%= form.text_field :adress, value: employee.adress["complement"], name: "employee[adress][complement]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+        <%= form.label :adress_complement, "Complemento:" %> <br>
+        <%= form.text_field :adress, autocomplete: :off, value: employee.adress["complement"], name: "employee[adress][complement]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-
     <div class="my-5">
       <%= form.label :adress_neighborhood, "Bairro:" %> <br>
-      <%= form.text_field :adress, value: employee.adress["neighborhood"], name: "employee[adress][neighborhood]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.text_field :adress, autocomplete: :off, value: employee.adress["neighborhood"], name: "employee[adress][neighborhood]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-
     <div>
       <%= form.label :adress_city, "Cidade" %> <br>
-      <%= form.text_field :adress, value: employee.adress["city"], name: "employee[adress][neighborhood]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.text_field :adress, autocomplete: :off, value: employee.adress["city"], name: "employee[adress][neighborhood]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-
     <div class="my-5">
       <%= form.label :adress_state, "Estado:" %> <br>
-      <%= form.text_field :adress, value: employee.adress["state"], name: "employee[adress][state]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.text_field :adress, autocomplete: :off, value: employee.adress["state"], name: "employee[adress][state]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-    
+  
     <div class="my-5">
       <%= form.label :adress_number, "CEP:" %> <br>
-      <%= form.text_field :adress, value: employee.adress["cep"], name: "employee[adress][cep]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.text_field :adress, autocomplete: :off, value: employee.adress["cep"], name: "employee[adress][cep]", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
   </div>
-
   <div class="my-5">
     <%= form.label :phone, "Telefone:" %> <br>
-    <%= form.telephone_field :phone, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.telephone_field :phone, autocomplete: :off, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="my-5">
-    <%= form.label :email, "Email:" %> <br> 
-    <%= form.email_field :email, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :email, "Email:" %> <br>
+    <%= form.email_field :email, autocomplete: :off, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="my-5">
-    <%= form.label :position, "Cargo" %> <br>
-    <%= form.collection_select :position_id, Position.all, :id, :name, prompt: "Selecione um cargo: ",class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :position, "Cargo:" %> <br>
+    <%= form.collection_select :position_id, Position.all, :id, :name, { prompt: "Selecione um cargo:" }, { class: "w-full border-gray-400 rounded-md shadow " } %>
   </div>
-
   <div class="my-5">
-    <%= form.label :contract_date, "Data de contratação" %> <br>
+    <%= form.label :contract_date, "Data de contratação:" %> <br>
     <%= form.date_field :contract_date, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="my-5">
     <%= form.label :salary, "Salário:" %> <br>
-    <%= form.text_field :salary, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :salary, autocomplete: :off, min: 0, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="my-5">
-    <%= form.label :status, "Status" %> <br>
-    
+    <%= form.label :status, "Status:" %> <br>
+  
     <%= form.radio_button :status, "Ativo" %>
     <%= form.label :status_active, "Ativo" %>
-
     <%= form.radio_button :status, "Inativo" %>
     <%= form.label :status_inactive, "Inativo" %>
-
     <%= form.radio_button :status, "Em Licença" %>
     <%= form.label :status_on_leave, "Em Licença" %>
   </div>
-
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "rounded-lg py-2 px-4 bg-blue text-white inline-block font-medium cursor-pointer" %>
   </div>
+
 <% end %>

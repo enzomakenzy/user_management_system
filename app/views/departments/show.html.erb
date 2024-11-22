@@ -1,15 +1,11 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="mx-auto md:w-2/3 max-w-2xl my-5">
+  <h1 class="font-geinst text-center text-xl">Informações do departamento</h1>
 
-    <%= render @department %>
+  <%= render @department %>
 
-    <%= link_to "Edit this department", edit_department_path(@department), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to departments", departments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this department", @department, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
+  <%= link_to "Editar departamento", edit_department_path(@department), class: "mt-2 rounded-lg py-3 px-5 bg-blue text-white inline-block font-medium" %>
+  <%= link_to "Voltar", departments_path, class: "ml-2 rounded-lg py-3 px-5 bg-blue text-white inline-block font-medium" %>
+  <div class="inline-block ml-2">
+    <%= button_to "Deletar departamento", @department, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-blue text-white font-medium" %>
   </div>
 </div>

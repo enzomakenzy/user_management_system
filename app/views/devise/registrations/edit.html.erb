@@ -1,5 +1,5 @@
-<div class="mx-auto">
-  <h2 class="text-center"> Editar usuário </h2>
+<div class="mx-auto my-4 max-w-md">
+  <h2 class="text-center text-2xl font-geinst"> Editar usuário </h2>
   
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -14,32 +14,25 @@
     <% end %>
   
     <div class="my-5">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password, "Nova senha" %> <br />
       <%= f.password_field :password, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
     </div>
   
     <div class="my-5">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation, "Confirmar nova senha" %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
   
     <div class="my-5">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password, "Senha atual" %><br />
       <%= f.password_field :current_password, autocomplete: "current-password", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
   
-    <div class="actions">
-      <%= f.submit "Update" %>
+    <div class="actions flex justify-between">
+      <%= f.submit "Atualizar", class: "cursor-pointer text-white shadow rounded-md border bg-blue border-gray-400 outline-none px-3 py-2 mt-2 mb-4" %>
+      <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "cursor-pointer text-white shadow rounded-md border bg-blue border-gray-400 outline-none px-3 py-2 mt-2 mb-4" %>
+      <%= link_to "Voltar", :back, class: "cursor-pointer text-white shadow rounded-md border bg-blue border-gray-400 outline-none mt-2 mb-4 back_edit" %>
     </div>
   <% end %>
   
-  <div>
-    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-  </div>
-  
-  <%= link_to "Back", :back %>
 </div>
