@@ -78,3 +78,5 @@ gem "pundit", "~> 2.4"
 gem "dotenv-rails", "~> 3.1"
 
 gem "faker", "~> 3.5"
+
+gem "rails-i18n", "~> 7.0"

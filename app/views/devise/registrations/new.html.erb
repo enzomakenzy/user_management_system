@@ -5,26 +5,34 @@
     </div>
     
     <div class="px-7 w-96" data-controller="loading">
+
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "contents", data: {
         action: "submit->loading#showSpinner"
       }) do |f| %>
+
         <h1 class="font-russoone text-center text-xl mt-5"> Crie sua conta! </h1>
+
         <%= render "devise/shared/error_messages", resource: resource, class: "text-center" %>
+
         <div class="my-5">
           <%= f.label :name , "Nome Completo:"%><br>
           <%= f.text_field :name, autofocus: "name", autocomplete: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
         </div>
+
         <div class="my-5">
           <%= f.label :email, "Email:" %><br>
           <%= f.email_field :email, autofocus: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
         </div>
+
         <% if User.count > 0 %>
           <div data-controller="checkboxes">
+
             <div class="mt-5">
               <%= f.label :acess, "Nível de Acesso:" %><br>
               <%= f.select :acess, [["Administrador", "admin"], ["Gestor de RH", "gestor"]], {},
                 data: { action: "change->checkboxes#select" }, class: "block shadow focus:outline-none rounded-md border border-gray-400 px-3 py-2 mt-2 w-full"%>
             </div>
+
             <div data-checkboxes-target="show" class="my-5 hidden">
               <%= f.label :departments, "Departamento(s):" %><br>
               <div class="max-h-24 overflow-y-auto rounded-md p-2">
@@ -36,6 +44,7 @@
                 <% end %>
               </div>
             </div>
+            
           </div>
         <% end %>
         <% if User.count == 0 %>
@@ -53,7 +62,6 @@
         <p class="text-center text-sm my-3">Já possui uma <%= link_to "conta", new_user_session_path, class: "text-blue font-semibold" %>?</p>
 
         <%= f.submit "Cadastre-se", data: { loading_target: "button" }, class: "cursor-pointer font-russoone text-white block shadow rounded-md border bg-blue border-gray-400 outline-none px-3 py-2 mt-2 w-full mb-4" %>
-
         
       <% end %>
     </div>

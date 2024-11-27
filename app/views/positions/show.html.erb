@@ -1,11 +1,11 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <h1 class="text-center font-geinst text-3xl mt-4">Informações do cargo</h1>
+<div class="mx-auto md:w-2/3 max-w-2xl my-5">
+  <h1 class="text-center font-geinst text-2xl">Informações do cargo</h1>
 
   <%= render @position %>
-
-  <%= link_to "Editar cargo", edit_position_path(@position), class: "mt-2 rounded-lg py-3 px-5  bg-blue text-white inline-block font-medium" %>
-  <%= link_to "Voltar", positions_path, class: "ml-2 rounded-lg py-3 px-5  bg-blue text-white inline-block font-medium" %>
+  
+  <%= link_to "Editar cargo", edit_position_path(@position), class: "mt-2 rounded-lg py-3 px-5  bg-blue text-white inline-block font-medium shadow-md" %>
+  <%= link_to "Voltar", positions_path, class: "ml-2 rounded-lg py-3 px-5  bg-blue text-white inline-block font-medium shadow-md" %>
   <div class="inline-block ml-2">
-    <%= button_to "Deletar cargo", @position, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-blue text-white font-medium" %>
+    <%= button_to "Deletar cargo", @position, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-blue text-white font-medium shadow-md" %>
   </div>
 </div>

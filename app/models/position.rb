@@ -4,6 +4,6 @@ class Position < ApplicationRecord
   validates :name, :description, :department, :level, :base_salary, :requirements, :benefits, :status, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
-    ["base_salary", "benefits", "created_at", "department_id", "description", "id", "id_value", "level", "name", "requirements", "status", "updated_at"]
+    ["department_id"]
   end
 end

@@ -2,16 +2,16 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl font-geinst">Funcionários</h1>
     <div class="flex space-x-4">
-        <%= link_to "Criar novo funcionário", new_employee_path, class: "rounded-lg py-3 px-5 bg-blue text-white block font-medium my-4" %>
+        <%= link_to "Criar novo funcionário", new_employee_path, class: "rounded-lg py-3 px-5 bg-blue text-white block font-medium my-4 shadow-md" %>
     </div>
   </div>
 
   <div data-controller="filter" class="my-3">
-    <%= link_to "Filtros", nil, remote: true, class: "rounded-lg py-3 px-5 bg-blue text-white inline font-medium",
-      data: {
-        action: "click->filter#toggle"
-      }
-    %>
+      <%= link_to "Filtros", nil, remote: true, class: "rounded-lg py-3 px-5 bg-blue text-white inline font-medium shadow-md",
+        data: {
+          action: "click->filter#toggle"
+        }
+      %>
     <div data-filter-target="show" class="hidden">
       <%= render "filters/filters_employees", employee: @employee, department: @department%>
     </div>
@@ -19,16 +19,15 @@
 
   <div id="employees" class="min-w-full mt-10">
     <% @employees.each do |employee| %>
-      <p class="text-lg">Nome: <%= employee.full_name %> </p>
-
-      <p class="text-lg">Cargo: <%= employee.position.name %> </p>
-
-      <p class="text-lg">Departamento: <%= employee.position.department.name %> </p>
-
-      <p class="text-lg">Data de contratação: <%= employee.contract_date %></p>
-
-      <p class="text-lg"> <%= link_to "Detalhes", employee, class: "rounded-lg py-1 px-4 bg-blue text-white inline-block font-medium cursor-pointer mt-2" %> </p>
-
+      <div class="flex justify-between">
+        <div>
+          <p class="text-lg">Nome: <%= employee.full_name %> </p>
+          <p class="text-lg">Cargo: <%= employee.position.name %> </p>
+          <p class="text-lg">Departamento: <%= employee.position.department.name %> </p>
+          <p class="text-lg">Data de contratação: <%= l(employee.contract_date) %></p>
+        </div>
+        <p class="text-lg"> <%= link_to "Detalhes", employee, class: "rounded-lg py-1 px-4 bg-blue text-white inline-block font-medium cursor-pointer mt-2 shadow-md" %> </p>
+      </div>
       <hr class="my-4 border-gray-400">
     <% end %>
   </div>

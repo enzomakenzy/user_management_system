@@ -31,3 +31,7 @@ input[type="number"] {
 .back_edit {
   padding: 10px 25px;
 }
+
+.risco {
+  text-decoration: line-through;
+}
