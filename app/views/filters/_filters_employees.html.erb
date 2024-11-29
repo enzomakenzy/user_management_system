@@ -1,12 +1,14 @@
 <%= search_form_for @q, data: { controller: "contract-validation" } do |f| %>
   <div class="flex my-5 justify-between">
     <div>
-      <p class="font-semibold"> <%= f.label :position_department_id_eq, "Departamento: ",  include_black: true %> </p>
+      <p class="font-semibold mb-3"> 
+        <%= f.label :position_department_id_eq, "Ordenar por departamento: ",  include_black: true %>
+      </p>
       <p> <%= f.select :position_department_id_eq, options_from_collection_for_select(@departments, :id, :name), include_blank: "Nenhum" %> </p>
     </div>
 
     <div class="w-72">
-      <p class="font-semibold">Ordenar por data de contratamento: </p>
+      <p class="font-semibold">Ordenar por data de contratação: </p>
       <span class="text-red-600 font-semibold" id="text-error"></span>
       <div>
         <p> <%= f.label :contract_date_gteq, "De:" %> </p>
@@ -19,7 +21,9 @@
     </div>
 
     <div class="flex gap-5">
-      <p><%= link_to "Remover", url_for(only_path: true), class: "bg-red-500 text-white py-2 px-4 rounded block"%></p>
+      <p>
+        <%= link_to "Remover", url_for(only_path: true), class: "bg-red-500 text-white py-2 px-4 rounded block" %>
+      </p>
       <p> <%= f.submit "Filtrar", data: { action: "click->contract-validation#validateDates" }, class: "bg-blue text-white py-2 px-4 rounded cursor-pointer" %> </p>
     </div>
   </div>
