@@ -1,3 +1,3 @@
-Desafio de sistema de gerenciamento de usuários feito utilizando Ruby on Rails
+Desafio de sistema de gerenciamento de funcionários feito utilizando Ruby on Rails
 
 
